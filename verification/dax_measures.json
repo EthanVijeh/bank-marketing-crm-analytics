@@ -1,0 +1,5 @@
+{
+  "Total Records": "COUNTROWS('crm_priority_segments_v2')",
+  "Successful Subscriptions": "CALCULATE(\n    COUNTROWS('crm_priority_segments_v2'),\n    'crm_priority_segments_v2'[y] = TRUE()\n)",
+  "Conversion Rate": "DIVIDE(\n    [Successful Subscriptions],\n    [Total Records],\n    0\n)"
+}

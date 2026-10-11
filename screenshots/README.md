@@ -21,3 +21,7 @@ These images are static previews of the Power BI dashboard.
 **[Download the Power BI Dashboard](../Bank_Marketing_CRM_Dashboard.pbix)**
 
 **[Return to Main Project README](../README.md)**
+
+## Screenshot provenance
+
+These previews correspond to the saved historical report. Their displayed metrics agree with the source-data recomputation. They were retained during the repository audit; they are not renders of a newly reformatted dashboard. See the [Power BI presentation checklist](../powerbi/README.md) before replacing the PBIX and screenshots together.

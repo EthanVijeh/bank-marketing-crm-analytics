@@ -1,0 +1,6 @@
+crm_segment,total_records,subscriptions,conversion_rate_percent,share_of_records_percent,share_of_subscriptions_percent,conversion_lift
+High,1511,978,64.73,3.34,18.49,5.53
+Medium,5034,735,14.6,11.13,13.9,1.25
+Limited - No loans,14365,1926,13.41,31.77,36.42,1.15
+Standard,1707,190,11.13,3.78,3.59,0.95
+Limited - Has loan,22594,1460,6.46,49.97,27.6,0.55

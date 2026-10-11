@@ -149,8 +149,8 @@ The first version classified records into four categories:
 
 - **High:** Previous campaign outcome was successful.
 - **Medium:** Previous outcome was classified as other, or a failed campaign with at least two previous contacts.
-- **Standard:** Previous campaign failed with one earlier contact.
-- **Limited History:** No usable previous campaign outcome for the rules.
+- **Standard:** Remaining records with a failed previous campaign after applying the Medium rule (`previous < 2` for valid, non-NULL contact counts).
+- **Limited History:** Records not matched by the other rules. In this dataset, these have `poutcome = 'unknown'`.
 
 This version demonstrated meaningful differences in historical conversion rates but placed approximately 81.75% of records in the Limited History category.
 
@@ -168,6 +168,8 @@ This created five exploratory segments.
 | Standard | 1,707 | 190 | 11.13% | 0.95× |
 | Limited – Has Loan | 22,594 | 1,460 | 6.46% | 0.55× |
 
+“Limited – No Loans” means neither a recorded housing loan nor a recorded personal loan. “Limited – Has Loan” means at least one of those two recorded loan types. These fields do not describe all possible borrowing. The SQL also includes a fallback for unavailable loan status; no records in this dataset require it.
+
 ### Key CRM Finding
 
 The High segment represented approximately **3.34% of campaign records** but accounted for **18.49% of successful subscriptions**.
@@ -175,6 +177,8 @@ The High segment represented approximately **3.34% of campaign records** but acc
 Its historical conversion rate was 5.53 times the overall average.
 
 These results show that simple CRM rules can organize historical records into segments with substantially different observed conversion rates.
+
+The High segment is exactly the previously successful campaign group. Its 64.73% conversion rate reproduces the previous-outcome finding; it is not a separate predictive discovery. Version 2 adds a housing- and personal-loan distinction within the limited-history group.
 
 **Important:** Historical lift is the ratio between a segment's conversion rate and the overall conversion rate. It does not represent sales growth caused by implementing the segmentation rules.
 
@@ -207,15 +211,11 @@ Of the 36,959 records with an unknown previous campaign outcome, 36,954 had zero
 
 ### Preliminary Segmentation Stability Check
 
-The campaign records were randomly divided into two samples to examine whether the five CRM segments exhibited similar historical conversion patterns.
+Script 15 randomly assigns records to two approximately equal groups and reports conversion rates by CRM segment.
 
-Both samples showed broadly consistent segment-level conversion rates.
+The split changes on each execution because it uses `RAND()`. No fixed split or saved output is included in this repository, so the script is provided as an exploratory diagnostic rather than evidence of a reproducible stability result.
 
-However, the segmentation rules had already been developed using the complete dataset.
-
-Therefore, **this exercise is a descriptive stability check, not independent predictive validation**.
-
-The model has not been evaluated on genuinely untouched or prospective campaign data.
+The segmentation rules were developed after examining the complete dataset. Splitting those same records afterward does not provide independent predictive validation. Performance on untouched or prospective campaign data remains untested.
 
 **Supporting SQL:**
 
@@ -223,6 +223,12 @@ The model has not been evaluated on genuinely untouched or prospective campaign 
 - [CRM Stability Check](sql/15_random_split_stability_check.sql)
 
 ---
+
+## Published Result Evidence
+
+The [results folder](results/) contains independent local recomputations of the deterministic analytical queries using the UCI source CSV. A [verification script](verification/README.md) translates the published BigQuery SQL into DuckDB SQL, runs all 15 scripts, and checks the stored Power BI records and segmentation assignments against the source and rules.
+
+These outputs are **local recomputations, not original BigQuery execution exports**. They verify historical arithmetic and consistency; they do not establish predictive generalization, causal impact, or successful Power BI Desktop refresh. Script 15 is executed as a diagnostic but its changing random output is not published as evidence of stability.
 
 ## Business Recommendations
 
@@ -280,6 +286,8 @@ The project is intended to demonstrate transparent analytical methods and busine
 | [screenshots/](screenshots/) | Power BI dashboard screenshots |
 | [powerbi/](powerbi/) | Power BI project documentation |
 | [Bank_Marketing_CRM_Dashboard.pbix](Bank_Marketing_CRM_Dashboard.pbix) | Interactive Power BI Desktop report |
+| [results/](results/) | Independently recomputed historical query outputs and verification provenance |
+| [verification/](verification/) | Local verification script and pinned dependencies |
 | README.md | Project overview, analytical findings, and documentation |
 
 ---
@@ -290,11 +298,11 @@ To reproduce the analysis:
 
 1. Download the [UCI Bank Marketing Dataset](https://archive.ics.uci.edu/dataset/222/bank+marketing) and locate `bank-full.csv` inside `bank.zip`.
 2. Create a Google BigQuery project and dataset.
-3. Import the CSV into a table named `bank_campaigns_raw`, using a semicolon (`;`) field delimiter, skipping the first header row, and enabling schema autodetection.
-4. Confirm the imported data types. In this project, `y`, `housing`, and `loan` were imported as Boolean fields.
+3. Import the CSV into a table named `bank_campaigns_raw`, using a semicolon (`;`) field delimiter, skipping one header row, and using the explicit schema in [SQL Setup Instructions](sql/README.md). Allow zero bad records.
+4. Replace the project ID and dataset name throughout all SQL files with your own. The source `yes`/`no` values are loaded as Boolean fields for `default`, `y`, `housing`, and `loan`.
 5. Run the scripts in the [sql/](sql/) directory, following the order described in [SQL Setup Instructions](sql/README.md).
 6. Run the CRM Version 1 creation script before Version 2 and the corresponding evaluation queries.
-7. Open the Power BI report in Power BI Desktop, configuring your own BigQuery data source if refreshing the data.
+7. Open the Power BI report in Power BI Desktop. Follow [Power BI Setup Instructions](powerbi/README.md) to update its saved project and dataset navigation before refreshing.
 
 **Reproducibility note:** The SQL files were reconstructed and organized from queries developed during the project rather than exported verbatim from BigQuery's saved-query interface. The scripts should be checked against the original saved queries when exact execution provenance is required.
 

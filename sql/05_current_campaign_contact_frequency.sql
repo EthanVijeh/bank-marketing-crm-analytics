@@ -6,7 +6,8 @@ SELECT
     WHEN campaign = 2 THEN '2 contacts'
     WHEN campaign = 3 THEN '3 contacts'
     WHEN campaign = 4 THEN '4 contacts'
-    ELSE '5+ contacts'
+    WHEN campaign >= 5 THEN '5+ contacts'
+    ELSE 'Unknown'
   END AS contact_frequency,
   COUNT(*) AS total_records,
   COUNTIF(y = TRUE) AS subscriptions,

@@ -1,4 +1,4 @@
-# Bank Marketing and CRM Optimization — working notes
+# Bank Marketing Analytics & CRM Decision Support — project notes
 
 ## Purpose
 
@@ -10,7 +10,7 @@ Analyze historical marketing-contact records for a Portuguese bank and construct
 - Tools used during the project: Google BigQuery SQL and Power BI Desktop (DAX measures and visuals).
 - Unit of analysis: campaign **record**, not confirmed unique customer.
 
-## Verified results from working queries
+## Reported historical results
 
 | Metric | Result |
 |---|---:|
@@ -35,6 +35,6 @@ Analyze historical marketing-contact records for a Portuguese bank and construct
 
 ## Important limitations
 
-The segmentation rules were selected after examining the original full dataset, and were then scored on that same data. The later random split was performed **after** rule development. It shows descriptive stability but is **not** unbiased held-out validation. No causal uplift, future predictive accuracy, or actual return on investment has been established. Loan-based exploratory segmentation is especially sensitive and should not be deployed without separate fairness, suitability, legal, and prospective validation review. Many previous campaign outcomes are `unknown` because there were zero earlier contacts. The dataset is historical, geographically specific, and lacks unique customer IDs.
+The segmentation rules were selected after examining the original full dataset, and were then scored on that same data. The later random split was performed **after** rule development. It can be used to inspect descriptive variation but is **not** unbiased held-out validation. No saved split output supports a stability conclusion in this repository. No causal uplift, future predictive accuracy, or actual return on investment has been established. Loan-based exploratory segmentation is especially sensitive and should not be deployed without separate fairness, suitability, legal, and prospective validation review. Many previous campaign outcomes are `unknown` because there were zero earlier contacts. The dataset is historical, geographically specific, and lacks unique customer IDs.
 
-These notes should be refined and cross-checked against the final report before publishing as definitive business recommendations.
+The [published result evidence](../results/README.md) documents independent local recomputation and its limits. The [Power BI documentation](../powerbi/README.md) contains the extracted DAX and refresh instructions.
