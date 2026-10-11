@@ -1,0 +1,13 @@
+previous_outcome,contact_method,total_records,subscriptions,conversion_rate_percent
+failure,unknown,31,4,12.9
+failure,cellular,4529,573,12.65
+failure,telephone,341,41,12.02
+other,unknown,27,5,18.52
+other,cellular,1637,280,17.1
+other,telephone,176,22,12.5
+success,telephone,114,75,65.79
+success,cellular,1385,900,64.98
+success,unknown,12,3,25.0
+unknown,cellular,21734,2616,12.04
+unknown,telephone,2275,252,11.08
+unknown,unknown,12950,518,4.0

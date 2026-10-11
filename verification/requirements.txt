@@ -1,0 +1,4 @@
+duckdb==1.5.6
+pandas==2.2.3
+sqlglot==30.22.0
+pbixray==0.15.5

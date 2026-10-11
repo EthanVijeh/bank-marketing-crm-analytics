@@ -1,0 +1,14 @@
+previous_campaign_outcome,previous_contact_group,total_records,subscriptions,conversion_rate_percent
+failure,1 contact,1707,190,11.13
+failure,2-3 contacts,2022,265,13.11
+failure,4+ contacts,1172,163,13.91
+other,1 contact,591,91,15.4
+other,2-3 contacts,628,106,16.88
+other,4+ contacts,621,110,17.71
+success,1 contact,473,301,63.64
+success,2-3 contacts,596,378,63.42
+success,4+ contacts,442,299,67.65
+unknown,0 contacts,36954,3384,9.16
+unknown,1 contact,1,1,100.0
+unknown,2-3 contacts,2,1,50.0
+unknown,4+ contacts,2,0,0.0
