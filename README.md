@@ -2,7 +2,7 @@ Bank Marketing Analytics & CRM Decision Support
 SQL + Google BigQuery + Power BI | Business Intelligence | Exploratory CRM Segmentation
 An end-to-end business analytics portfolio project examining 45,211 historical bank marketing campaign records and developing a rule-based CRM segmentation prototype to support analysis of outreach and term-deposit subscription patterns.
 > **Project scope:** This is a historical decision-support demonstration—not a deployed CRM, a validated predictive model, or evidence of increased sales.
-Project overview
+Project overview:
 A Portuguese bank conducted direct-marketing campaigns promoting term deposits. The business questions explored here are:
 Which recorded contact methods and previous campaign outcomes are associated with higher subscription rates?
 How do current-campaign contact frequency and previous contact history relate to outcomes?
